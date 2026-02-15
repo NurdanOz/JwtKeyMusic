@@ -1,103 +1,328 @@
-🎵 Bepop - AI Destekli Müzik Keşif Platformu
-Show Image
-Show Image
-Show Image
-Show Image
-Bepop, kullanıcıların ruh hallerine göre müzik keşfedebildiği, Gemini AI destekli akıllı öneri sistemiyle donatılmış, N-Katmanlı mimari ile geliştirilmiş modern bir müzik platformudur.
-Proje; Clean Architecture, SOLID prensipleri ve RESTful API standartları gözetilerek geliştirilmiştir.
+# 🎵 JwtKeyMusic - AI Destekli Müzik Keşif Platformu
 
+[![.NET Core](https://img.shields.io/badge/.NET-8.0-purple?style=for-the-badge&logo=.net)](https://dotnet.microsoft.com/)
+[![Gemini AI](https://img.shields.io/badge/Gemini-AI-4285F4?style=for-the-badge&logo=google)](https://ai.google.dev/)
+[![JWT](https://img.shields.io/badge/JWT-Auth-000000?style=for-the-badge&logo=jsonwebtokens)](https://jwt.io/)
+[![SQL Server](https://img.shields.io/badge/SQL_Server-Database-CC2927?style=for-the-badge&logo=microsoftsqlserver)](https://www.microsoft.com/sql-server)
 
+**JwtKeyMusic**, kullanıcıların ruh hallerine göre müzik keşfedebildiği, **Gemini AI** destekli akıllı öneri sistemiyle donatılmış, **N-Katmanlı mimari** ile geliştirilmiş modern bir müzik platformudur.
 
-###✨ Öne Çıkan Özellikler
-🎭 Ruh Haline Göre Müzik Keşfi
+Proje; **Clean Architecture**, **SOLID** prensipleri ve **RESTful API** standartları gözetilerek geliştirilmiştir.
+
+---
+
+## 📋 İçindekiler
+
+* [✨ Öne Çıkan Özellikler](#-öne-çıkan-özellikler)
+* [🚀 Kurulum ve Başlangıç](#-kurulum-ve-başlangıç)
+* [🏗️ Proje Yapısı](#️-proje-yapısı)
+* [🎯 Temel Özellikler](#-temel-özellikler)
+* [🧠 Gemini AI Entegrasyonu](#-gemini-ai-entegrasyonu)
+* [🛠️ Teknoloji Yığını](#️-teknoloji-yığını)
+* [🔒 Güvenlik ve Yetkilendirme](#-güvenlik-ve-yetkilendirme)
+* [📸 Ekran Görüntüleri](#-ekran-görüntüleri)
+
+---
+
+## ✨ Öne Çıkan Özellikler
+
+### 🎭 Ruh Haline Göre Müzik Keşfi
 Gemini AI ile güçlendirilmiş akıllı asistan, kullanıcının ruh halini analiz ederek kişiselleştirilmiş müzik önerileri sunar.
-"Bugün kendimi enerjik ama biraz melankolik hissediyorum" → Sistem, veritabanındaki şarkıları analiz ederek mükemmel bir çalma listesi oluşturur.
 
-###🔐 Güvenli ve Ölçeklenebilir Mimari
+> *"Bugün kendimi enerjik ama biraz melankolik hissediyorum"* → Sistem, veritabanındaki şarkıları analiz ederek mükemmel bir çalma listesi oluşturur.
 
-JWT tabanlı token kimlik doğrulama
-Role-based access control (RBAC)
-BCrypt ile güvenli şifreleme
-N-Katmanlı mimari ile sürdürülebilir kod yapısı
+### 🔐 Güvenli ve Ölçeklenebilir Mimari
+- JWT tabanlı token kimlik doğrulama
+- Role-based access control (RBAC)
+- BCrypt ile güvenli şifreleme
+- N-Katmanlı mimari ile sürdürülebilir kod yapısı
 
+### 🎵 Kapsamlı Müzik Yönetimi
+- Şarkı ekleme, düzenleme ve silme
+- Çalma listeleri oluşturma
+- Favori şarkılar
+- Trend şarkılar ve keşfet sayfası
 
+---
 
-###👤 Kullanıcı Yönetimi
+## 🚀 Kurulum ve Başlangıç
 
-✅ Kayıt ve Giriş
-✅ Profil Güncelleme
-✅ Şifre Sıfırlama
-✅ JWT Token ile Oturum Yönetimi
+### Gereksinimler
 
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [SQL Server](https://www.microsoft.com/sql-server) (veya SQL Server Express)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) veya JetBrains Rider
 
-###🎭 Gemini AI Özellikleri
+### Kurulum Adımları
 
-✅ Ruh Haline Göre Müzik Önerisi
-✅ Doğal Dil İşleme
-✅ Akıllı Playlist Oluşturma
-✅ Müzik Analizi ve Eşleştirme
+#### 1. Projeyi Klonlayın
+```bash
+git clone https://github.com/[KULLANICI_ADINIZ]/JwtKeyMusic.git
+cd JwtKeyMusic
+```
 
+#### 2. Veritabanı Bağlantısını Yapılandırın
 
-###🧠 Gemini AI Entegrasyonu
+`appsettings.json` dosyasını açın ve bağlantı dizesini güncelleyin:
 
-Nasıl Çalışır?
-JwtKeyMusic, Google'ın Gemini 1.5 Flash modelini kullanarak kullanıcı taleplerini doğal dil işleme ile analiz eder.
-Örnek Kullanım:
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=JwtKeyMusicDb;Trusted_Connection=True;TrustServerCertificate=True;"
+  }
+}
+```
+
+#### 3. Gemini AI API Key'i Ekleyin
+
+```json
+{
+  "GeminiAI": {
+    "ApiKey": "YOUR_GEMINI_API_KEY_HERE",
+    "Model": "gemini-1.5-flash"
+  }
+}
+```
+
+> **Not:** Gemini API key'i için [Google AI Studio](https://ai.google.dev/) adresinden ücretsiz anahtar alabilirsiniz.
+
+#### 4. Migration'ları Çalıştırın
+
+```bash
+cd JwtKeyMusic.DataAccess
+dotnet ef database update
+```
+
+#### 5. Projeyi Çalıştırın
+
+```bash
+dotnet run --project JwtKeyMusic.WebApi
+```
+
+API Swagger dokümantasyonu: `https://localhost:5001/swagger`
+
+---
+
+## 🏗️ Proje Yapısı
+
+```
+JwtKeyMusic/
+├── 📦 JwtKeyMusic (Ana Proje)
+│
+├── 💼 JwtKeyMusic.Business          # İş Mantığı Katmanı
+│   ├── Abstract/                    # Interface'ler
+│   ├── Concrete/                    # Servis Implementasyonları
+│   └── Services/
+│       └── GeminiAIService.cs       # Gemini AI Entegrasyonu
+│
+├── 🗃️ JwtKeyMusic.DataAccess        # Veri Erişim Katmanı
+│   ├── Abstract/                    # Repository Interface'leri
+│   ├── Concrete/                    # Repository Implementasyonları
+│   ├── Context/                     # DbContext
+│   └── Migrations/                  # EF Core Migration'ları
+│
+├── 📋 JwtKeyMusic.DTO                # Data Transfer Objects
+│   ├── MusicDtos/
+│   ├── UserDtos/
+│   └── PlaylistDtos/
+│
+├── 🏛️ JwtKeyMusic.Entities          # Domain Entity'leri
+│   ├── Music.cs
+│   ├── User.cs
+│   ├── Playlist.cs
+│   └── ...
+│
+├── 🖥️ JwtKeyMusic.UI                # MVC Frontend (Opsiyonel)
+│
+└── 🌐 JwtKeyMusic.WebApi            # Web API Katmanı
+    ├── Controllers/
+    ├── Middlewares/
+    └── Program.cs
+```
+
+---
+
+## 🎯 Temel Özellikler
+
+### 👤 Kullanıcı Yönetimi
+- ✅ Kayıt ve Giriş
+- ✅ Profil Güncelleme
+- ✅ Şifre Sıfırlama
+- ✅ JWT Token ile Oturum Yönetimi
+
+### 🎵 Müzik Özellikleri
+- ✅ Şarkı Arama ve Filtreleme
+- ✅ Kategori Bazlı Listeleme
+- ✅ Trend Şarkılar
+- ✅ Son Eklenenler
+- ✅ Favori Şarkılar
+
+### 📝 Çalma Listeleri
+- ✅ Özel Çalma Listeleri Oluşturma
+- ✅ Şarkı Ekleme/Çıkarma
+- ✅ Liste Paylaşımı
+- ✅ Sıralama ve Düzenleme
+
+### 🎭 Gemini AI Özellikleri
+- ✅ Ruh Haline Göre Müzik Önerisi
+- ✅ Doğal Dil İşleme
+- ✅ Akıllı Playlist Oluşturma
+- ✅ Müzik Analizi ve Eşleştirme
+
+---
+
+## 🧠 Gemini AI Entegrasyonu
+
+### Nasıl Çalışır?
+
+JwtKeyMusic, Google'ın **Gemini 1.5 Flash** modelini kullanarak kullanıcı taleplerini doğal dil işleme ile analiz eder.
+
+### Örnek Kullanım:
+
+```
 Kullanıcı: "Enerjik ama melankolik şarkılar istiyorum"
-AI Süreci:
+```
 
-Gemini, kullanıcının ruh halini analiz eder
-Veritabanındaki şarkıları kategorilere göre filtreler
-Tempo, mod, enerji seviyesi gibi kriterleri değerlendirir
-Kişiselleştirilmiş bir çalma listesi oluşturur
+### AI Süreci:
+1. Gemini, kullanıcının ruh halini analiz eder
+2. Veritabanındaki şarkıları kategorilere göre filtreler
+3. Tempo, mod, enerji seviyesi gibi kriterleri değerlendirir
+4. Kişiselleştirilmiş bir çalma listesi oluşturur
 
+### Teknik Detaylar:
+```csharp
+public class GeminiAIService
+{
+    private readonly string _apiKey;
+    private readonly string _model = "gemini-1.5-flash";
+    
+    public async Task<List<MusicDto>> GetMoodBasedRecommendations(string mood)
+    {
+        // Gemini AI'a kullanıcının ruh hali gönderilir
+        var prompt = $"Kullanıcının ruh hali: {mood}. Uygun şarkı türlerini ve özelliklerini öner.";
+        
+        // AI'dan gelen öneriler veritabanı ile eşleştirilir
+        var recommendations = await CallGeminiAPI(prompt);
+        
+        return await MatchSongsWithDatabase(recommendations);
+    }
+}
+```
 
-###KategoriTeknolojiKullanım Amacı
+---
 
-🧱 Framework.NET 6.0 Yüksek performanslı Web API geliştirme
-🧠 AI/MLGoogle Gemini AIAkıllı müzik önerileri ve ruh hali analizi
-🗃️ ORMEntity Framework CoreVeritabanı işlemleri ve migration yönetimi
-🔐 GüvenlikBCrypt.Net-NextParola hashleme ve güvenli kimlik doğrulama
-🪪 AuthJWTToken bazlı kimlik doğrulama
-📊 DatabaseSQL Serverİlişkisel veritabanı yönetimi
+## 🛠️ Teknoloji Yığını
 
-###Frontend (Opsiyonel)
-ASP.NET Core MVC
-Bootstrap 5
-jQuery
-Font Awesome
+### Backend
 
-###Mimari Desenler
+| Kategori | Teknoloji | Kullanım Amacı |
+|----------|-----------|----------------|
+| 🧱 Framework | **.NET 8.0** | Yüksek performanslı Web API geliştirme |
+| 🧠 AI/ML | **Google Gemini AI** | Akıllı müzik önerileri ve ruh hali analizi |
+| 🗃️ ORM | **Entity Framework Core** | Veritabanı işlemleri ve migration yönetimi |
+| 🔐 Güvenlik | **BCrypt.Net-Next** | Parola hashleme ve güvenli kimlik doğrulama |
+| 🪪 Auth | **JWT** | Token bazlı kimlik doğrulama |
+| 📊 Database | **SQL Server** | İlişkisel veritabanı yönetimi |
 
-✅ N-Layer Architecture
-✅ Repository Pattern
-✅ Dependency Injection
-✅ DTO Pattern
-✅ SOLID Principles
+### Frontend (Opsiyonel)
 
+- **ASP.NET Core MVC**
+- **Bootstrap 5**
+- **jQuery**
+- **Font Awesome**
 
-🔒 JWT Token Authentication: Her API isteği token ile doğrulanır
-🔑 BCrypt Password Hashing: Şifreler güvenli bir şekilde hashlenmiştir
-🛡️ Role-Based Access Control: Kullanıcı rolleri ile yetkilendirme
-🚫 CORS Policy: Güvenli API erişimi
-✅ Input Validation: Tüm inputlar doğrulanır
+### Mimari Desenler
 
+- ✅ **N-Layer Architecture**
+- ✅ **Repository Pattern**
+- ✅ **Dependency Injection**
+- ✅ **DTO Pattern**
+- ✅ **SOLID Principles**
 
-📸 Ekran Görüntüleri
+---
 
-<img width="1172" height="2271" alt="BEPOP14" src="https://github.com/user-attachments/assets/ad4dfd3c-aada-4163-8566-c00a37712ffc" />
-<img width="1920" height="1014" alt="BEPOP1" src="https://github.com/user-attachments/assets/66ef7603-c407-4c8f-840c-b8cb382d611b" />
-<img width="1920" height="1004" alt="BEPOP2" src="https://github.com/user-attachments/assets/cef73d70-13e1-43e7-aeb1-556ac6cbc2a0" />
-<img width="1920" height="1011" alt="BEPOP3" src="https://github.com/user-attachments/assets/bdf6340b-99b7-4d56-afb4-7697fcaa1b10" />
-<img width="1920" height="1014" alt="BEPOP4" src="https://github.com/user-attachments/assets/0ecd152d-0166-4727-af00-470c0e790ee7" />
-<img width="1920" height="1014" alt="BEPOP5" src="https://github.com/user-attachments/assets/3fe4fa44-3281-48ae-8845-8e824b162549" />
-<img width="1920" height="1021" alt="BEPOP6" src="https://github.com/user-attachments/assets/398727a9-47cb-432a-8a33-a65e2de6e3e2" />
-<img width="1920" height="1017" alt="BEPOP7" src="https://github.com/user-attachments/assets/739943f6-52b1-438a-a181-4095d023a555" />
-<img width="1920" height="1007" alt="BEPOP8" src="https://github.com/user-attachments/assets/a69f8a8a-dd1d-4f9e-9923-4cf307ab3ef9" />
-<img width="1920" height="1021" alt="BEPOP9" src="https://github.com/user-attachments/assets/df61ed8c-ca0a-4a68-b13c-4fa4207736b8" />
-<img width="1920" height="1018" alt="BEPOP10" src="https://github.com/user-attachments/assets/9a465894-8c9a-416a-b2b6-b909c16a2533" />
-<img width="1920" height="1014" alt="BEPOP11" src="https://github.com/user-attachments/assets/bfe2a906-0489-46a8-9f09-74ded0779b12" />
-<img width="1920" height="1014" alt="BEPOP12" src="https://github.com/user-attachments/assets/b561869d-ce02-4646-9ac9-0132638d933b" />
-<img width="1920" height="1028" alt="BEPOP13" src="https://github.com/user-attachments/assets/33af1fdc-1972-4b2c-9030-0efc7c1add0b" />
+## 🔒 Güvenlik ve Yetkilendirme
 
+### Yetkilendirme Matrisi
 
+| İşlem | Ziyaretçi | Kullanıcı | Admin |
+|-------|-----------|-----------|-------|
+| API Erişimi | ❌ 401 | ✅ | ✅ |
+| Şarkı Dinleme | ❌ | ✅ | ✅ |
+| Playlist Oluşturma | ❌ | ✅ | ✅ |
+| Şarkı Ekleme | ❌ | ❌ | ✅ |
+| Kullanıcı Yönetimi | ❌ | ❌ | ✅ |
+| Sistem Ayarları | ❌ | ❌ | ✅ |
+
+### Güvenlik Özellikleri
+
+- 🔒 **JWT Token Authentication:** Her API isteği token ile doğrulanır
+- 🔑 **BCrypt Password Hashing:** Şifreler güvenli bir şekilde hashlenmiştir
+- 🛡️ **Role-Based Access Control:** Kullanıcı rolleri ile yetkilendirme
+- 🚫 **CORS Policy:** Güvenli API erişimi
+- ✅ **Input Validation:** Tüm inputlar doğrulanır
+
+---
+
+## 📸 Ekran Görüntüleri
+
+### 🏠 Ana Sayfa
+*Trend şarkılar ve keşfet bölümü*
+
+### 🎭 Gemini AI Asistan
+*Ruh haline göre müzik önerisi alan kullanıcı arayüzü*
+
+### 📝 Çalma Listeleri
+*Kullanıcının oluşturduğu özel çalma listeleri*
+
+### ⚙️ Admin Paneli
+*Şarkı yönetimi ve kullanıcı istatistikleri*
+
+---
+
+## 🤝 Katkıda Bulunma
+
+Bu projeye katkıda bulunmak isterseniz:
+
+1. Projeyi fork edin
+2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Add some AmazingFeature'`)
+4. Branch'inizi push edin (`git push origin feature/AmazingFeature`)
+5. Pull Request oluşturun
+
+---
+
+## 📝 Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakabilirsiniz.
+
+---
+
+## 👨‍💻 Geliştirici
+
+**[Adınız Soyadınız]**
+
+- GitHub: [@yourusername](https://github.com/yourusername)
+- LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- Email: your.email@example.com
+
+---
+
+## 🙏 Teşekkürler
+
+- Google Gemini AI ekibine yapay zeka desteği için
+- .NET topluluğuna sürekli geliştirme ve destek için
+- Tüm açık kaynak katkıda bulunanlara
+
+---
+
+## 📚 Kaynaklar
+
+- [.NET Documentation](https://docs.microsoft.com/dotnet/)
+- [Gemini AI Documentation](https://ai.google.dev/docs)
+- [JWT.io](https://jwt.io/)
+- [Entity Framework Core](https://docs.microsoft.com/ef/core/)
+
+---
+
+**⭐ Projeyi beğendiyseniz yıldız vermeyi unutmayın!**
