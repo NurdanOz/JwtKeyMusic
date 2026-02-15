@@ -1,0 +1,737 @@
+﻿@model List<JwtKeyMusic.UI.Models.SongViewModel>
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+
+<div id="content" class="flex">
+    <div>
+        <div class="page-content page-container" id="page-content">
+            <div class="padding sr">
+
+                @* Hata mesajı *@
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @ViewBag.Error
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+
+                @* Başlık *@
+                <div class="page-hero">
+                    <div class="media bg-media">
+                        <div class="media-content" style="background-image:url(/Bepop/assets/img/b9.jpg)"></div>
+                    </div>
+                    <div class="slick" data-plugin="slick" data-option="{
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: true,
+                        arrows: false,
+                        fade: true,
+                        autoplay: false,
+                        rtl: false
+                    }">
+                        <div data-bg="@Url.Content("~/Bepop/assets/img/b9.jpg")">
+                            <div class="pos-rlt">
+                                <h2 class="display-3 font-weight-bold text-white">Harika Şarkılar</h2>
+                                <div class="col-6 px-0 py-3 text-muted">
+                                    <p>Yeni müzikleri keşfedin, kendi listelerinizi oluşturun ve sınırsız eğlencenin tadını çıkarın.</p>
+                                </div>
+                                <a asp-controller="Genre" asp-action="Index" class="btn ajax btn-rounded gd-primary text-white">Keşfet</a>
+                                <a href="#" class="btn no-bg text-white">Paylaş</a>
+
+                                <!-- ✅ YENİ - AI İLE SOHBET BUTONU -->
+                                <button id="aiChatBtn" type="button" class="btn btn-rounded text-white" onclick="openAIModal(); return false;" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                    💬 AI ile Sohbet
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @{
+                    var hasRecommendations = ViewBag.HasRecommendations ?? false;
+                    var recommendedSongs = ViewBag.RecommendedSongs as List<JwtKeyMusic.UI.Models.RecommendationViewModel>;
+                }
+
+                <div class="heading pt-5 pb-3 d-flex">
+                    <div>
+                        @if (hasRecommendations)
+                        {
+                            <div class="text-muted sr-item">
+                                <i data-feather="star" style="width: 16px; height: 16px;"></i> Size Özel
+                            </div>
+                            <h5 class="text-highlight sr-item">Önerilen Şarkılar</h5>
+                        }
+                        else
+                        {
+                            <div class="text-muted sr-item">Haftalık</div>
+                            <h5 class="text-highlight sr-item">En Popüler Şarkılar</h5>
+                        }
+                    </div>
+                    <span class="flex"></span>
+                </div>
+
+                @if (hasRecommendations && recommendedSongs != null && recommendedSongs.Any())
+                {
+                    @* ML.NET ÖNERİLERİ *@
+                    <div class="slick slick-visible slick-arrow-top row sr-item" data-plugin="slick" data-option="{
+                            slidesToShow: 6,
+                            slidesToScroll: 1,
+                            dots: false,
+                            rtl: false,
+                            responsive: [
+                                { breakpoint: 1200, settings: { slidesToShow: 6 } },
+                                { breakpoint: 920, settings: { slidesToShow: 4 } },
+                                { breakpoint: 768, settings: { slidesToShow: 3 } },
+                                { breakpoint: 576, settings: { slidesToShow: 2 } }
+                            ]
+                        }">
+                        @{
+                            int recCount = 0;
+                        }
+                        @foreach (var rec in recommendedSongs)
+                        {
+                            recCount++;
+                            var imageUrl = $"~/Bepop/assets/img/c{(recCount % 32)}.jpg";
+
+                            <div class="col-2" data-id="@rec.SongId" data-category="Music" data-tag="@rec.ArtistName">
+                                <div class="list-item slick-item r list-hover mb-3">
+                                    <div class="media">
+                                        <a href="item.detail.html#@rec.SongId" class="ajax media-content" style="background-image:url(@Url.Content(imageUrl))"></a>
+                                        <div class="media-action media-action-overlay">
+                                            @* Öneri badge'i *@
+                                            <div class="badge badge-pill badge-warning position-absolute" style="top: 10px; left: 10px;">
+                                                <i data-feather="star" style="width: 12px; height: 12px;"></i> @rec.PredictedScore.ToString("F1")
+                                            </div>
+                                            <button class="btn btn-icon no-bg no-shadow hide-row" data-toggle-class>
+                                                <i data-feather="heart" class="active-fill"></i>
+                                            </button>
+                                            <button class="btn btn-raised btn-icon btn-rounded bg--white btn-play" data-preview-url="@rec.PreviewUrl" data-title="@rec.Title" data-artist="@rec.ArtistName" data-img-url="@Url.Content(imageUrl)"></button>
+                                            <button class="btn btn-icon no-bg no-shadow hide-row btn-more" data-toggle="dropdown">
+                                                <i data-feather="more-horizontal"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right"></div>
+                                        </div>
+                                    </div>
+                                    <div class="list-content text-center">
+                                        <div class="list-body">
+                                            <a href="item.detail.html#@rec.SongId" class="list-title title ajax h-1x text-white">@rec.Title</a>
+                                            <a href="artist.detail.html#@rec.SongId" class="list-subtitle d-block text-muted h-1x subtitle ajax">@rec.ArtistName</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                }
+                else if (Model != null && Model.Any())
+                {
+                    @* NORMAL ŞARKI LİSTESİ *@
+                    <div class="slick slick-visible slick-arrow-top row sr-item" data-plugin="slick" data-option="{
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                dots: false,
+                rtl: false,
+                responsive: [
+                    { breakpoint: 1200, settings: { slidesToShow: 6 } },
+                    { breakpoint: 920, settings: { slidesToShow: 4 } },
+                    { breakpoint: 768, settings: { slidesToShow: 3 } },
+                    { breakpoint: 576, settings: { slidesToShow: 2 } }
+                ]
+            }">
+                        @{
+                            int normalCount = 0;
+                        }
+                        @foreach (var song in Model.Take(12))
+                        {
+                            normalCount++;
+                            var imageUrl = !string.IsNullOrEmpty(song.ImageUrl)
+                            ? (song.ImageUrl.StartsWith("http") ? song.ImageUrl : Url.Content(song.ImageUrl))
+                            : $"https://ui-avatars.com/api/?name={Uri.EscapeDataString(song.ArtistName ?? "Music")}&size=300&background=random";
+
+                            <div class="col-2" data-id="@song.Id" data-category="Music" data-tag="@song.ArtistName">
+                                <div class="list-item slick-item r list-hover mb-3">
+                                    <div class="media">
+                                        <a href="item.detail.html#@song.Id" class="ajax media-content" style="background-image:url(@Url.Content(imageUrl))"></a>
+                                        <div class="media-action media-action-overlay">
+                                            @* Premium Badge *@
+                                            @if (song.RequiredLevel > 1)
+                                            {
+                                                <div class="badge badge-pill position-absolute" style="top: 10px; left: 10px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: 10px; padding: 4px 8px;">
+                                                    @if (song.RequiredLevel == 2)
+                                                    {
+                                                        <span>💎 BASIC</span>
+                                                    }
+                                                    @if (song.RequiredLevel == 3)
+                                                    {
+                                                        <span>🥇 GOLD</span>
+                                                    }
+                                                    @if (song.RequiredLevel == 4)
+                                                    {
+                                                        <span>👑 PREMIUM</span>
+                                                    }
+                                                    @if (song.RequiredLevel >= 5)
+                                                    {
+                                                        <span>⭐ ULTRA</span>
+                                                    }
+                                                </div>
+                                            }
+                                            <button class="btn btn-icon no-bg no-shadow hide-row" data-toggle-class>
+                                                <i data-feather="heart" class="active-fill"></i>
+                                            </button>
+                                            <button class="btn btn-raised btn-icon btn-rounded bg--white btn-play"
+                                                    data-youtube-id="@song.YouTubeId"
+                                                    data-title="@song.Title"
+                                                    data-artist="@song.ArtistName"
+                                                    data-img-url="@Url.Content(imageUrl)"></button>
+                                            <button class="btn btn-icon no-bg no-shadow hide-row btn-more" data-toggle="dropdown">
+                                                <i data-feather="more-horizontal"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Çal</a>
+                                                <a class="dropdown-item" href="#">Listeme Ekle</a>
+                                                <a class="dropdown-item" href="#">Paylaş</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-content text-center">
+                                        <div class="list-body">
+                                            <a href="item.detail.html#@song.Id" class="list-title title ajax h-1x text-white">@song.Title</a>
+                                            <a href="artist.detail.html#@song.Id" class="list-subtitle d-block text-muted h-1x subtitle ajax">@song.ArtistName</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-5">
+                        <div class="mb-4">
+                            <i data-feather="music" style="width: 64px; height: 64px;" class="text-muted"></i>
+                        </div>
+                        <h4 class="text-white">Henüz şarkı yok!</h4>
+                        <p class="text-muted">Paketinize uygun şarkı bulunamadı veya veritabanında şarkı bulunmuyor.</p>
+                    </div>
+                }
+
+
+
+                <div class="heading pt-5 pb-3 d-flex">
+                    <div>
+                        <div class="text-muted sr-item">Öne Çıkan</div>
+                        <h5 class="text-highlight sr-item">Albümler</h5>
+                    </div>
+                    <span class="flex"></span>
+                </div>
+                <div class="row row-md">
+                    @{
+                        count = 0;
+                    }
+                    @foreach (var song in Model.Take(8))
+                    {
+                        count++;
+                        var imageUrl = !string.IsNullOrEmpty(song.ImageUrl)
+                        ? (song.ImageUrl.StartsWith("http") ? song.ImageUrl : Url.Content(song.ImageUrl))
+                        : $"https://ui-avatars.com/api/?name={Uri.EscapeDataString(song.ArtistName ?? "Music")}&size=300&background=random";
+
+                        <div class="col-4 col-md-3 col-lg-2 col-xl-1-8" data-id="@song.Id" data-category="Music" data-tag="@song.ArtistName" data-source="@song.YouTubeId">
+                            <div class="list-item r list-hover">
+                                <div class="media">
+                                    <a href="item.detail.html#@song.Id" class="ajax media-content" style="background-image:url(@imageUrl)"></a>
+                                    <div class="media-action media-action-overlay">
+                                        <button class="btn btn-icon no-bg no-shadow hide-row" data-toggle-class>
+                                            <i data-feather="heart" class="active-fill"></i>
+                                        </button>
+                                        <button class="btn btn-raised btn-icon btn-rounded bg--white btn-play"
+                                                data-youtube-id="@song.YouTubeId"
+                                                data-title="@song.Title"
+                                                data-artist="@song.ArtistName"
+                                                data-img-url="@imageUrl"></button>
+                                        <button class="btn btn-icon no-bg no-shadow hide-row btn-more" data-toggle="dropdown">
+                                            <i data-feather="more-horizontal"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Çal</a>
+                                            <a class="dropdown-item" href="#">Listeme Ekle</a>
+                                            <a class="dropdown-item" href="#">Paylaş</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-content text-center">
+                                    <div class="list-body">
+                                        <a href="item.detail.html#@song.Id" class="list-title title ajax h-1x text-white">@song.Title</a>
+                                        <a href="artist.detail.html#@song.Id" class="list-subtitle d-block text-muted h-1x subtitle ajax">@song.ArtistName</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="heading pt-5 pb-3 d-flex">
+                            <div>
+                                <h5 class="text-highlight sr-item">Son Eklenenler</h5>
+                            </div>
+                            <span class="flex"></span>
+                        </div>
+
+                        <div class="row list-row list-index">
+                            @{
+                                count = 0;
+                            }
+                            @foreach (var song in (Model ?? new List<SongViewModel>()).TakeLast(5))
+                            {
+                                count++;
+                                var imageUrl = !string.IsNullOrEmpty(song.ImageUrl)
+                                ? song.ImageUrl
+                                : $"~/Bepop/assets/img/c{(count % 32)}.jpg";
+
+                                <div class="col-12">
+                                    <div class="list-item r">
+                                        <div class="media">
+                                            <a asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id" class="ajax media-content" style="background-image:url('@Url.Content(imageUrl)')"></a>
+                                            <div class="media-action media-action-overlay">
+                                                <button class="btn btn-icon no-bg no-shadow hide-row" data-toggle-class>
+                                                    <i data-feather="heart" class="active-fill"></i>
+                                                </button>
+                                                <button class="btn btn-raised btn-icon btn-rounded bg--white btn-play"
+                                                        data-youtube-id="@song.YouTubeId"
+                                                        data-title="@song.Title"
+                                                        data-artist="@song.ArtistName"
+                                                        data-img-url="@Url.Content(imageUrl)"></button>
+                                                <button class="btn btn-icon no-bg no-shadow hide-row btn-more" data-toggle="dropdown">
+                                                    <i data-feather="more-horizontal"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item">Çalma Listeme Ekle</a>
+                                                    <a class="dropdown-item">Paylaş</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="list-content">
+                                            <div class="list-body">
+                                                <a asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id" class="list-title title ajax h-1x">@song.Title</a>
+                                                <a asp-controller="Artist" asp-action="Detail" asp-route-id="@song.Id" class="list-subtitle d-block text-muted h-1x subtitle ajax">
+                                                    @song.ArtistName
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="list-action show-row">
+                                            <div class="d-flex align-items-center">
+                                                <div class="px-3 text-sm text-muted d-none d-md-block"></div>
+                                                <button class="btn btn-icon no-bg no-shadow" data-toggle-class>
+                                                    <i data-feather="heart" class="active-primary"></i>
+                                                </button>
+                                                <button class="btn btn-icon no-bg no-shadow btn-more" data-toggle="dropdown">
+                                                    <i data-feather="more-horizontal"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="heading pt-5 pb-3 d-flex">
+                            <div>
+                                <div class="text-muted sr-item">Yaklaşan</div>
+                                <h5 class="text-highlight sr-item">Etkinlikler</h5>
+                            </div>
+                            <span class="flex"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="list-item list-overlay r mb-3">
+                                    <div class="media media-4x3 gd-primary">
+                                        <a href="#" class="ajax media-content" style="background-image:url(@Url.Content("~/Bepop/assets/img/event1.jpg"))"></a>
+                                    </div>
+                                    <div class="list-content p-4">
+                                        <div class="list-body">
+                                            <a href="#" class="list-title title ajax h5 font-weight-bold">Bahar Festivali</a>
+                                            <a href="#" class="list-subtitle d-block text-muted h-1x subtitle ajax">
+                                                Müzik ve eğlence dolu bir hafta sonu.
+                                            </a>
+                                        </div>
+                                        <div class="list-footer">
+                                            <div class="text-muted text-sm">11 Şubat, 03:39</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="list-item list-overlay r mb-3">
+                                    <div class="media media-4x3 gd-success">
+                                        <a href="#" class="ajax media-content" style="background-image:url(@Url.Content("~/Bepop/assets/img/event2.jpg"))"></a>
+                                    </div>
+                                    <div class="list-content p-4">
+                                        <div class="list-body">
+                                            <a href="#" class="list-title title ajax h5 font-weight-bold">Müzik Merkezi 2025</a>
+                                            <a href="#" class="list-subtitle d-block text-muted h-1x subtitle ajax">
+                                                Sektörün en iyileri bu etkinlikte buluşuyor.
+                                            </a>
+                                        </div>
+                                        <div class="list-footer">
+                                            <div class="text-muted text-sm">8 Şubat, 03:34</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="heading pt-5 pb-3 d-flex">
+                            <div>
+                                <div class="text-muted sr-item">Blog</div>
+                                <h5 class="text-highlight sr-item">Haberler</h5>
+                            </div>
+                            <span class="flex"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="list-item r">
+                                    <div class="media media-16x9">
+                                        <a href="#" class="ajax media-content" style="background-image:url(@Url.Content("~/Bepop/assets/img/b15.jpg"))"></a>
+                                    </div>
+                                    <div class="list-content">
+                                        <div class="list-body">
+                                            <a href="#" class="list-title title ajax">Yeni Albümler Yolda</a>
+                                        </div>
+                                        <div class="list-footer">
+                                            <div class="text-muted text-sm">24 Şubat, 00:43</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="list-item r">
+                                    <div class="media media-16x9">
+                                        <a href="#" class="ajax media-content" style="background-image:url(@Url.Content("~/Bepop/assets/img/b16.jpg"))"></a>
+                                    </div>
+                                    <div class="list-content">
+                                        <div class="list-body">
+                                            <a href="#" class="list-title title ajax">Turne Tarihleri Açıklandı</a>
+                                        </div>
+                                        <div class="list-footer">
+                                            <div class="text-muted text-sm">26 Şubat, 01:29</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="list-item r">
+                                    <div class="media media-16x9">
+                                        <a href="#" class="ajax media-content" style="background-image:url(@Url.Content("~/Bepop/assets/img/b17.jpg"))"></a>
+                                    </div>
+                                    <div class="list-content">
+                                        <div class="list-body">
+                                            <a href="#" class="list-title title ajax">Festivalin Yıldızları</a>
+                                        </div>
+                                        <div class="list-footer">
+                                            <div class="text-muted text-sm">9 Şubat, 09:34</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* AI MODAL *@
+<div id="aiModal" class="modal fade" style="display:none; background: rgba(0,0,0,0.8); position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999;" onclick="if(event.target.id === 'aiModal') closeAIModal();">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
+        <div class="modal-content" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border: 2px solid #6c5ce7; border-radius: 15px;">
+            <div class="modal-header" style="border-bottom: 2px solid #6c5ce7; background: rgba(108, 92, 231, 0.1);">
+                <h5 class="modal-title" style="color: #fff; font-weight: bold;">
+                    💬 AI ile Playlist Oluştur
+                </h5>
+                <button type="button" class="close" onclick="closeAIModal(); return false;" style="color: #fff;">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 30px; max-height: 60vh; overflow-y: auto;">
+                <label style="color: #fff; margin-bottom: 10px; display: block;">Nasıl şarkılar dinlemek istersin?</label>
+                <textarea id="aiPrompt" class="form-control" rows="4" placeholder="Örnek: Gece uzun yolda giderken dinleyebileceğim, hafif yüksek tempolu Alternatif veya Türkçe Rock şarkılar öner" style="background: #1a1a1a; border: 1px solid #6c5ce7; color: #fff; resize: none;"></textarea>
+
+                <div id="aiLoading" style="display:none; text-align: center; margin-top: 20px; color: #fff;">
+                    <div style="margin-bottom: 10px;">🤖 AI düşünüyor...</div>
+                </div>
+
+                <div id="aiResults" style="display:none; margin-top: 20px;">
+                    <div style="background: rgba(108, 92, 231, 0.2); padding: 15px; border-radius: 10px; border-left: 4px solid #6c5ce7; margin-bottom: 15px;">
+                        <p style="margin: 0; color: #fff;">
+                            <strong>🎭 Mood:</strong> <span id="aiMood"></span>
+                        </p>
+                    </div>
+                    <div id="aiSongsList"></div>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 2px solid #6c5ce7;">
+                <button class="btn btn-secondary" onclick="closeAIModal()">Kapat</button>
+                <button class="btn btn-primary" onclick="askAI()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                    🚀 Playlist Oluştur
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* YouTube Player *@
+<div id="youtube-player-container" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#1a1a1a; padding:15px; z-index:9999; border-top:2px solid #6c5ce7;">
+    <div style="max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:20px;">
+        <div id="player" style="width:240px; height:135px;"></div>
+        <div style="flex:1; color:#fff;">
+            <div id="now-playing-title" style="font-weight:bold; font-size:18px; margin-bottom:5px;"></div>
+            <div id="now-playing-artist" style="color:#aaa; font-size:14px;"></div>
+        </div>
+        <button onclick="closePlayer()" style="background:none; border:none; color:#fff; font-size:32px; cursor:pointer; padding:0 15px;">&times;</button>
+    </div>
+</div>
+
+</div>
+
+<script>
+    // ===== AI MODAL =====
+       function openAIModal() {
+        var m = document.getElementById('aiModal');
+        m.style.display = 'block';
+        m.style.visibility = 'visible';
+        m.style.opacity = '1';
+        m.style.pointerEvents = 'auto';
+        m.style.zIndex = '99999';
+        document.getElementById('aiPrompt').value = '';
+        document.getElementById('aiResults').style.display = 'none';
+        document.getElementById('aiLoading').style.display = 'none';
+    }
+
+    function closeAIModal() {
+        document.getElementById('aiModal').style.display = 'none';
+    }
+
+    async function askAI() {
+        const prompt = document.getElementById('aiPrompt').value.trim();
+        if (!prompt) {
+            alert('Lütfen bir şeyler yazın!');
+            return;
+        }
+
+        document.getElementById('aiLoading').style.display = 'block';
+        document.getElementById('aiResults').style.display = 'none';
+
+        try {
+    const response = await fetch('https://localhost:7180/api/Songs/AiSearch?prompt=' + encodeURIComponent(prompt));            const data = await response.json();
+            document.getElementById('aiLoading').style.display = 'none';
+
+           if (data.songs && data.songs.length > 0) {
+    if (data.mood) {
+        document.getElementById('aiMood').textContent = data.mood;
+    } else {
+        document.getElementById('aiMood').parentElement.style.display = 'none';
+    }
+
+       let html = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;">';
+    data.songs.forEach(song => {
+        html += `<div style="background: rgba(108, 92, 231, 0.15); padding: 12px; border-radius: 8px; border: 1px solid #6c5ce7; cursor: pointer;">
+            <div style="color: #fff; font-weight: bold; font-size: 13px; margin-bottom: 5px;">${song.title}</div>
+            <div style="color: #aaa; font-size: 12px;">${song.artistName}</div>
+        </div>`;
+    });
+    html += '</div>';
+                document.getElementById('aiSongsList').innerHTML = html;
+                document.getElementById('aiResults').style.display = 'block';
+            }
+        } catch (error) {
+            alert('Hata: ' + error.message);
+            document.getElementById('aiLoading').style.display = 'none';
+        }
+    }
+
+    // ===== YOUTUBE PLAYER =====
+    var player;
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '135',
+            width: '240',
+            playerVars: { 'playsinline': 1, 'controls': 1 }
+        });
+    }
+
+       document.addEventListener('click', function(e) {
+        if (e.target.closest('.btn-play')) {
+            var btn = e.target.closest('.btn-play');
+            var youtubeId = btn.getAttribute('data-youtube-id');
+            var title = btn.getAttribute('data-title');
+            var artist = btn.getAttribute('data-artist');
+
+            if (youtubeId) {
+                // Paket kontrolü yap
+                checkPackageBeforePlay(youtubeId, title, artist);
+            }
+        }
+    });
+
+    async function checkPackageBeforePlay(youtubeId, title, artist) {
+        const songElement = event.target.closest('[data-id]');
+        const songId = songElement ? songElement.getAttribute('data-id') : null;
+
+        if (!songId) {
+            playYoutube(youtubeId, title, artist);
+            return;
+        }
+
+        showLoading();
+
+        try {
+            const response = await fetch('/Song/CheckPackage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': getCsrfToken()
+                },
+                body: JSON.stringify({ songId: parseInt(songId) })
+            });
+
+            const data = await response.json();
+            hideLoading();
+
+            if (data.canPlay) {
+                playYoutube(youtubeId, title, artist);
+                showAlert(data.message, 'success');
+            } else {
+                showPackageModal(data.requiredLevel, data.userPackageLevel, title);
+            }
+        } catch (error) {
+            hideLoading();
+            showAlert('Hata: ' + error.message, 'error');
+        }
+    }
+
+    function playYoutube(youtubeId, title, artist) {
+        document.getElementById('youtube-player-container').style.display = 'block';
+        document.getElementById('now-playing-title').textContent = title;
+        document.getElementById('now-playing-artist').textContent = artist;
+        if (player && player.loadVideoById) {
+            player.loadVideoById(youtubeId);
+        }
+    }
+
+    function showPackageModal(requiredLevel, userLevel, songTitle) {
+        const packageNames = {
+            1: 'FREE',
+            2: 'BASIC 💎',
+            3: 'GOLD 🥇',
+            4: 'PREMIUM 👑',
+            5: 'ULTRA ⭐'
+        };
+
+        const requiredName = packageNames[requiredLevel] || 'Bilinmeyen';
+        const userPackageName = packageNames[userLevel] || 'FREE';
+
+        const modal = document.createElement('div');
+        modal.className = 'modal fade show';
+        modal.id = 'packageModal';
+        modal.style.display = 'block';
+        modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
+
+        modal.innerHTML = `
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border: 2px solid #6c5ce7; border-radius: 15px;">
+                    <div class="modal-header" style="border-bottom: 2px solid #6c5ce7; background: rgba(108, 92, 231, 0.1);">
+                        <h5 class="modal-title" style="color: #fff; font-weight: bold;">
+                            <i data-feather="lock" style="margin-right: 10px;"></i>Paket Güncellemesi Gerekli
+                        </h5>
+                        <button type="button" class="close" onclick="closePackageModal()" style="color: #fff;">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding: 30px; color: #fff;">
+                        <p style="font-size: 16px; margin-bottom: 15px;">
+                            "<strong>${songTitle}</strong>" şarkısı dinlemek için <strong>${requiredName}</strong> paketi gereklidir.
+                        </p>
+                        <div style="background: rgba(108, 92, 231, 0.2); padding: 15px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #6c5ce7;">
+                            <p style="margin: 0; font-size: 14px;">
+                                📊 <strong>Güncel Paketiniz:</strong> <span style="color: #ffa500;">${userPackageName}</span><br/>
+                                📈 <strong>Gerekli Paket:</strong> <span style="color: #6c5ce7;">${requiredName}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="border-top: 2px solid #6c5ce7; padding: 15px;">
+                        <button type="button" class="btn btn-secondary" onclick="closePackageModal()" style="background: #444; border: none; color: #fff; padding: 10px 20px; border-radius: 5px;">
+                            İptal
+                        </button>
+                        <a href="/Payment/Upgrade" class="btn btn-primary" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: #fff; padding: 10px 30px; border-radius: 5px; text-decoration: none;">
+                            📦 Paket Yükselt
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+    }
+
+    function closePackageModal() {
+        const modal = document.getElementById('packageModal');
+        if (modal) modal.remove();
+    }
+
+    function showLoading() {
+        const loader = document.createElement('div');
+        loader.id = 'package-loader';
+        loader.style.cssText = `
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 10000; background: rgba(0,0,0,0.9); padding: 30px;
+            border-radius: 10px; text-align: center; color: white;
+        `;
+        loader.innerHTML = '<div style="margin-bottom: 15px;">⏳ Paket kontrolü yapılıyor...</div>';
+        document.body.appendChild(loader);
+    }
+
+    function hideLoading() {
+        const loader = document.getElementById('package-loader');
+        if (loader) loader.remove();
+    }
+
+    function showAlert(message, type) {
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type === 'error' ? 'danger' : 'success'} alert-dismissible fade show`;
+        alert.style.cssText = `
+            position: fixed; top: 20px; right: 20px; z-index: 9999;
+            min-width: 300px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        `;
+        alert.innerHTML = `${message}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>`;
+        document.body.appendChild(alert);
+        setTimeout(() => alert.remove(), 4000);
+    }
+
+    function getCsrfToken() {
+        const name = '__RequestVerificationToken';
+        const cookie = document.cookie.split('; ').find(row => row.startsWith(name + '='));
+        return cookie ? cookie.split('=')[1] : '';
+    }
+
+    function closePlayer() {
+        document.getElementById('youtube-player-container').style.display = 'none';
+        if (player && player.stopVideo) player.stopVideo();
+    }
+</script>

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "JwtKeyMusic.WebApi\\JwtKeyMusic.WebApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "JwtKeyMusic.UI\\JwtKeyMusic.UI.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

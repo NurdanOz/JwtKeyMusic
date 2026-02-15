@@ -1,0 +1,19 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace JwtKeyMusic.UI.Models
+{
+    public class UserRegisterModel
+    {
+        [Required(ErrorMessage = "Kullanıcı adı zorunludur")]
+        [MinLength(3, ErrorMessage = "Kullanıcı adı en az 3 karakter olmalıdır")]
+        public string Username { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Email zorunludur")]
+        [EmailAddress(ErrorMessage = "Geçerli bir email adresi girin")]
+        public string Email { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Şifre zorunludur")]
+        [MinLength(6, ErrorMessage = "Şifre en az 6 karakter olmalıdır")]
+        public string Password { get; set; } = string.Empty;
+    }
+}

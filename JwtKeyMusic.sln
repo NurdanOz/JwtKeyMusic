@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtKeyMusic", "JwtKeyMusic\JwtKeyMusic.csproj", "{FF7A0B45-00C1-45AB-92BE-848BC4A17960}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtKeyMusic.DataAccess", "JwtKeyMusic.DataAccess\JwtKeyMusic.DataAccess.csproj", "{38EBA35E-6668-429C-86DB-32348D2CEEDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtKeyMusic.Business", "JwtKeyMusic.Business\JwtKeyMusic.Business.csproj", "{7B3A69A6-E5DB-4F5A-9003-7A392326A49A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtKeyMusic.DTO", "JwtKeyMusic.DTO\JwtKeyMusic.DTO.csproj", "{945D965F-EF18-4642-A0B9-79936F65986F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtKeyMusic.WebApi", "JwtKeyMusic.WebApi\JwtKeyMusic.WebApi.csproj", "{D9EACF7A-AF56-4EAD-8E5B-687488E1655F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtKeyMusic.Entitiess", "JwtKeyMusic.Entitiess\JwtKeyMusic.Entitiess.csproj", "{5209A5D8-2C5F-402C-880F-66CCFE4365E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtKeyMusic.UI", "JwtKeyMusic.UI\JwtKeyMusic.UI.csproj", "{DE4153CC-21AD-4070-AB87-201A4F63F80A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF7A0B45-00C1-45AB-92BE-848BC4A17960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF7A0B45-00C1-45AB-92BE-848BC4A17960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF7A0B45-00C1-45AB-92BE-848BC4A17960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF7A0B45-00C1-45AB-92BE-848BC4A17960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38EBA35E-6668-429C-86DB-32348D2CEEDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38EBA35E-6668-429C-86DB-32348D2CEEDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38EBA35E-6668-429C-86DB-32348D2CEEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38EBA35E-6668-429C-86DB-32348D2CEEDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B3A69A6-E5DB-4F5A-9003-7A392326A49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B3A69A6-E5DB-4F5A-9003-7A392326A49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B3A69A6-E5DB-4F5A-9003-7A392326A49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B3A69A6-E5DB-4F5A-9003-7A392326A49A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{945D965F-EF18-4642-A0B9-79936F65986F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{945D965F-EF18-4642-A0B9-79936F65986F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{945D965F-EF18-4642-A0B9-79936F65986F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{945D965F-EF18-4642-A0B9-79936F65986F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9EACF7A-AF56-4EAD-8E5B-687488E1655F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9EACF7A-AF56-4EAD-8E5B-687488E1655F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9EACF7A-AF56-4EAD-8E5B-687488E1655F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9EACF7A-AF56-4EAD-8E5B-687488E1655F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5209A5D8-2C5F-402C-880F-66CCFE4365E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5209A5D8-2C5F-402C-880F-66CCFE4365E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5209A5D8-2C5F-402C-880F-66CCFE4365E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5209A5D8-2C5F-402C-880F-66CCFE4365E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE4153CC-21AD-4070-AB87-201A4F63F80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE4153CC-21AD-4070-AB87-201A4F63F80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE4153CC-21AD-4070-AB87-201A4F63F80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE4153CC-21AD-4070-AB87-201A4F63F80A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3D1F328-35A2-42AF-A350-0FAB276AB2F9}
+	EndGlobalSection
+EndGlobal

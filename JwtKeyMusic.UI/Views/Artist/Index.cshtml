@@ -1,0 +1,138 @@
+﻿@model List<JwtKeyMusic.UI.Models.ArtistViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content" class="flex">
+    <div>
+        <div class="page-content page-container" id="page-content">
+            <div class="padding sr" id="list">
+                <div class="page-hero">
+                    <div class="media bg-media">
+                        <div class="media-content" style="background-image:url(/Bepop/assets/img/b6.jpg)"></div>
+                    </div>
+                    <div class="pos-rlt">
+                        <h1 class="display-3 font-weight-bold text-white">@(Model?.Count() ?? 0) Sanatçı</h1>
+                    </div>
+                </div>
+                <div class="d-lg-flex pos-rlt">
+                    <div class="flex">
+                        <div class="pb-4 d-flex sr-item" id="filter-tag">
+                            <div class="mx-3">
+                                <a href="#" class="btn btn-sm btn-primary m-1">Tümü</a>
+                                <a href="#" class="btn btn-sm btn-white m-1">Popüler</a>
+                            </div>
+                        </div>
+
+                        <div class="row list media-circle">
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var artist in Model)
+                                {
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-3 py-3">
+                                        <div class="list-item r">
+                                            <div class="media">
+                                                <a asp-controller="Artist" asp-action="Detail" asp-route-id="@artist.Id"
+                                                   class="media-content"
+                                                   style="background-image:url('@Url.Content(!string.IsNullOrEmpty(artist.ImageUrl) ? artist.ImageUrl : "/Bepop/assets/img/a1.jpg")')"></a>
+                                                <div class="media-action"></div>
+                                            </div>
+                                            <div class="list-content text-center">
+                                                <div class="list-body">
+                                                    <a asp-controller="Artist" asp-action="Detail" asp-route-id="@artist.Id"
+                                                       class="list-subtitle d-block text-muted h-1x subtitle">
+                                                        @artist.Name
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="col-12">
+                                    <p class="text-white">Görüntülenecek sanatçı bulunamadı.</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div style="min-width: 4rem"></div>
+                    <div class="w-xl w-auto-sm no-shrink">
+                        <div class="sticky">
+                            <div class="list mb-5">
+                                <div class="list-item list-overlay r">
+                                    <div class="media">
+                                        <a  class="ajax media-content" style="background-image:url(@Url.Content("/Bepop/assets/img/b16.jpg"))" >
+                                        </a>
+                                        <div class="media-action">
+                                        </div>
+                                    </div>
+                                    <div class="list-content p-5 text-center">
+                                        <div class="list-body">
+                                            <a class="list-title title ajax h3 font-weight-bold">
+                                                Hip-Hop Top 100
+                                            </a>
+                                            <a href="#" class="list-subtitle d-block text-muted h-1x subtitle ajax">
+                                                En popüler rap şarkıları
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="text text-muted sr-item">En Popüler Parçalar</h6>
+                            <div class="row list-row">
+
+                                @if (ViewBag.PopularSongs != null)
+                                {
+                                    @foreach (var song in ViewBag.PopularSongs)
+                                    {
+                                        <div class="col-12">
+                                            <div class="list-item r">
+                                                <div class="media">
+                                                    <a asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id"
+                                                       class="ajax media-content"
+                                                       style="background-image:url(@Url.Content(!string.IsNullOrEmpty(song.ImageUrl) ? song.ImageUrl : "~/Bepop/assets/img/c33.jpg"))"></a>
+                                                    <div class="media-action">
+                                                        <button class="btn btn-icon no-bg no-shadow hide-row" data-toggle-class>
+                                                            <i data-feather="heart" class="active-fill"></i>
+                                                        </button>
+                                                        <button class="btn btn-raised btn-icon btn-rounded bg--white btn-play"
+                                                                data-preview-url="@song.PreviewUrl"
+                                                                data-title="@song.Title"
+                                                                data-artist="@song.ArtistName"
+                                                                data-img-url="@Url.Content(!string.IsNullOrEmpty(song.ImageUrl) ? song.ImageUrl : "~/Bepop/assets/img/c33.jpg")"></button>
+                                                        <button class="btn btn-icon no-bg no-shadow hide-row btn-more" data-toggle="dropdown">
+                                                            <i data-feather="more-horizontal"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="#">Çalma Listeme Ekle</a>
+                                                            <a class="dropdown-item" href="#">Paylaş</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-content">
+                                                    <div class="list-body">
+                                                        <a asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id"
+                                                           class="list-title title ajax h-1x">
+                                                            @song.Title
+                                                        </a>
+                                                        <a class="list-subtitle d-block text-muted h-1x subtitle ajax">
+                                                            @song.ArtistName
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

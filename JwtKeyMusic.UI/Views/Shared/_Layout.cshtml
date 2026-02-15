@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+@await Component.InvokeAsync("_HeadComponentPartial")
+<body class="layout-column bg-dark">
+    <!-- Header/Navbar -->
+    @await Component.InvokeAsync("_NavbarComponentPartial")
+
+    <!-- Main Content -->
+    <div id="main" class="layout-row flex">
+        @RenderBody()
+    </div>
+
+    <!-- Footer -->
+    @await Component.InvokeAsync("_FooterComponentPartial")
+
+    <!-- Scripts -->
+    @await Component.InvokeAsync("_ScriptComponentPartial")
+</body>
+</html>

@@ -1,0 +1,360 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+@await Component.InvokeAsync("_HeadComponentPartial")
+
+<body class="layout-column bg-dark">
+    @await Component.InvokeAsync("_NavbarComponentPartial")
+
+    <div id="main" class="layout-row flex">
+        <div id="content" class="flex">
+            <div class="sr">
+                <!-- Hero Section -->
+                <div class="page-hero page-container">
+                    <div class="media bg-media">
+                        <div class="media-content" style="background-image:url(/Bepop/assets/img/b2.jpg)"></div>
+                    </div>
+                    <div class="p-5 pos-rlt text-center">
+                        <h1 class="display-3 font-weight-bold text-white mb-5 mx-5">Bepop: Dinle, Keşfet, Paylaş</h1>
+                        <a asp-controller="Song" asp-action="Index" class="btn btn-md gd-primary text-white m-2">Yeni Müzikleri Keşfet</a>
+                        <a href="#pricing" class="btn btn-md btn-outline-light m-2">Paketleri Gör</a>
+                    </div>
+                </div>
+
+                <!-- Artists Section -->
+                <div class="page-container p-5 pos-rlt">
+                    <div class="py-5 text-center">
+                        <h2 class="display-4 font-weight-bold text-white mb-5">Bepop'daki Sanatçılar</h2>
+                        <p>En popüler sanatçıları bulun, Bepop' müziklerini dinleyin ve dinlerken kendi çalma listelerinizi oluşturun.</p>
+                        <div class="py-4">
+                            <a asp-controller="Artist" asp-action="Index" class="btn btn-md btn-outline-primary m-2">Sanatçıları Keşfet</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery -->
+                <div class="row no-gutters flex align-items-end">
+                    <div class="col-2">
+                        <div class="row no-gutters align-items-end">
+                            <div class="col-2">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b0.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-10"></div>
+                            <div class="col-8">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b1.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b2.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b3.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b4.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b5.jpg);"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row no-gutters align-items-end">
+                            <div class="col-3">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b6.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b7.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-7"></div>
+                            <div class="col-12">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b8.jpg);"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row no-gutters align-items-end">
+                            <div class="col-7">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b9.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b10.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b11.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b12.jpg);"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="row no-gutters align-items-end">
+                            <div class="col-5">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b13.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b14.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b15.jpg);"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="row no-gutters align-items-end">
+                            <div class="col-2"></div>
+                            <div class="col-4">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b18.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b17.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b20.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b17.jpg);"></a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="media">
+                                    <a class="media-content" style="background-image: url(/Bepop/assets/img/b19.jpg);"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <section class="py-5" id="pricing">
+        <div class="container-fluid px-4">
+            <div class="text-center mb-5">
+                <h1 class="fw-bold mb-3">Sana en uygun planı seç</h1>
+                <p class="text-muted">Reklamsız müzik dinle.</p>
+            </div>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-5 g-3">
+
+                <!-- FREE PLAN -->
+                <div class="col">
+                    <div class="pricing-card bg-dark rounded-4 p-4 h-100 border border-secondary">
+                        <div class="mb-3">
+                            <span class="badge bg-secondary mb-3">Ücretsiz</span>
+                            <h4 class="fw-bold mb-3">Free</h4>
+                            <div class="mb-4">
+                                <h2 class="fw-bold mb-0">₺0.00</h2>
+                                <p class="text-muted small mb-0">ücretsiz / kalıcı</p>
+                            </div>
+                        </div>
+
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small">✓ 1 Basic hesap</li>
+                            <li class="mb-2 small">✓ İstediğin zaman iptal et</li>
+                        </ul>
+
+                        <div>
+                            <a asp-controller="Register" asp-action="Index" asp-route-packageId="1" class="btn btn-outline-light w-100 rounded-pill fw-bold mb-3">Başla</a>
+                            <p class="text-muted small mb-0">Temel müzik deneyimi. Reklam içerir.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BASIC PLAN -->
+                <div class="col">
+                    <div class="pricing-card bg-dark rounded-4 p-4 h-100 border border-warning">
+                        <div class="mb-3">
+                            <span class="badge bg-warning text-dark mb-3">Popüler</span>
+                            <h4 class="fw-bold mb-3">Basic</h4>
+                            <div class="mb-4">
+                                <h6 class="text-muted mb-1">Ayda</h6>
+                                <h2 class="fw-bold mb-0">₺39.90</h2>
+                            </div>
+                        </div>
+
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small">✓ 1 Premium hesap</li>
+                            <li class="mb-2 small">✓ Reklamsız dinleme</li>
+                            <li class="mb-2 small">✓ İstediğin zaman iptal et</li>
+                        </ul>
+
+                        <div>
+                            <a asp-controller="Register" asp-action="Index" asp-route-packageId="2" class="btn btn-warning text-dark w-100 rounded-pill fw-bold mb-3">Başla</a>
+                            <p class="text-muted small mb-0">Reklamsız müzik dinleme deneyimi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GOLD PLAN -->
+                <div class="col">
+                    <div class="pricing-card bg-dark rounded-4 p-4 h-100 border border-info">
+                        <div class="mb-3">
+                            <span class="badge bg-info text-dark mb-3">Önerilen</span>
+                            <h4 class="fw-bold mb-3">Gold</h4>
+                            <div class="mb-4">
+                                <h6 class="text-muted mb-1">Ayda</h6>
+                                <h2 class="fw-bold mb-0">₺59.90</h2>
+                            </div>
+                        </div>
+
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small">✓ 1 Premium hesap</li>
+                            <li class="mb-2 small">✓ Offline dinleme</li>
+                            <li class="mb-2 small">✓ Yüksek ses kalitesi</li>
+                            <li class="mb-2 small">✓ İstediğin zaman iptal et</li>
+                        </ul>
+
+                        <div>
+                            <a asp-controller="Register" asp-action="Index" asp-route-packageId="3" class="btn btn-info text-dark w-100 rounded-pill fw-bold mb-3">Başla</a>
+                            <p class="text-muted small mb-0">Offline özelliği ile her yerde müzik.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PREMIUM PLAN -->
+                <div class="col">
+                    <div class="pricing-card bg-gradient-gold rounded-4 p-4 h-100 border border-warning position-relative">
+                        <div class="mb-3 mt-2">
+                            <span class="badge bg-warning text-dark mb-3">Üstün Hizmet</span>
+                            <h4 class="fw-bold mb-3">Premium</h4>
+                            <div class="mb-4">
+                                <h6 class="text-muted mb-1">Ayda</h6>
+                                <h2 class="fw-bold mb-0">₺99.90</h2>
+                            </div>
+                        </div>
+
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small">✓ 2 Premium hesap</li>
+                            <li class="mb-2 small">✓ Aile paylaşımı</li>
+                            <li class="mb-2 small">✓ Tüm özelliklere erişim</li>
+                            <li class="mb-2 small">✓ İstediğin zaman iptal et</li>
+                        </ul>
+
+                        <div>
+                            <a asp-controller="Register" asp-action="Index" asp-route-packageId="4" class="btn btn-warning text-dark w-100 rounded-pill fw-bold mb-3">Başla</a>
+                            <p class="text-muted small mb-0">Aile üyeleri ile paylaşım yapın.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ULTRA PLAN -->
+                <div class="col">
+                    <div class="pricing-card bg-gradient-premium rounded-4 p-4 h-100 border border-danger position-relative">
+                        <div class="mb-3 mt-2">
+                            <span class="badge bg-danger mb-3">Sınırsız Erişim</span>
+                            <h4 class="fw-bold mb-3">Ultra</h4>
+                            <div class="mb-4">
+                                <h6 class="text-muted mb-1">Ayda</h6>
+                                <h2 class="fw-bold mb-0">₺119.90</h2>
+                            </div>
+                        </div>
+
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li class="mb-2 small">✓ 6 Premium hesap</li>
+                            <li class="mb-2 small">✓ <strong>Tüm</strong> şarkılara erişim</li>
+                            <li class="mb-2 small">✓ Öncelikli destek</li>
+                            <li class="mb-2 small">✓ VIP özellikler</li>
+                        </ul>
+
+                        <div>
+                            <a asp-controller="Register" asp-action="Index" asp-route-packageId="5" class="btn btn-danger w-100 rounded-pill fw-bold mb-3">Başla</a>
+                            <p class="text-muted small mb-0">En fazla 6 aile üyesi için. VIP deneyim.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-5">
+                <p class="text-muted small">
+                    Premium planları daha önce denememiş kullanıcılar için geçerlidir.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .pricing-card {
+            transition: transform 0.2s ease;
+            background-color: #121212 !important;
+            display: flex;
+            flex-direction: column;
+            min-height: 450px;
+        }
+
+            .pricing-card:hover {
+                transform: scale(1.03);
+            }
+
+        .bg-gradient-gold {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2200 100%) !important;
+        }
+
+        .bg-gradient-premium {
+            background: linear-gradient(135deg, #1a1a1a 0%, #330000 100%) !important;
+        }
+
+        .btn-light:hover {
+            background-color: #b3b3b3 !important;
+            transform: scale(1.05);
+        }
+
+        .btn-warning:hover,
+        .btn-info:hover,
+        .btn-danger:hover {
+            transform: scale(1.05);
+        }
+    </style>
+
+    @await Component.InvokeAsync("_FooterComponentPartial")
+    @await Component.InvokeAsync("_ScriptComponentPartial")
+</body>
+</html>
