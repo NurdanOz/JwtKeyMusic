@@ -8,12 +8,12 @@ Proje; Clean Architecture, SOLID prensipleri ve RESTful API standartları gözet
 
 
 
-✨ Öne Çıkan Özellikler
+###✨ Öne Çıkan Özellikler
 🎭 Ruh Haline Göre Müzik Keşfi
 Gemini AI ile güçlendirilmiş akıllı asistan, kullanıcının ruh halini analiz ederek kişiselleştirilmiş müzik önerileri sunar.
 "Bugün kendimi enerjik ama biraz melankolik hissediyorum" → Sistem, veritabanındaki şarkıları analiz ederek mükemmel bir çalma listesi oluşturur.
 
-🔐 Güvenli ve Ölçeklenebilir Mimari
+###🔐 Güvenli ve Ölçeklenebilir Mimari
 
 JWT tabanlı token kimlik doğrulama
 Role-based access control (RBAC)
@@ -22,9 +22,7 @@ N-Katmanlı mimari ile sürdürülebilir kod yapısı
 
 
 
-🎯 Temel Özellikler
-
-👤 Kullanıcı Yönetimi
+###👤 Kullanıcı Yönetimi
 
 ✅ Kayıt ve Giriş
 ✅ Profil Güncelleme
@@ -32,7 +30,7 @@ N-Katmanlı mimari ile sürdürülebilir kod yapısı
 ✅ JWT Token ile Oturum Yönetimi
 
 
-🎭 Gemini AI Özellikleri
+###🎭 Gemini AI Özellikleri
 
 ✅ Ruh Haline Göre Müzik Önerisi
 ✅ Doğal Dil İşleme
@@ -40,7 +38,7 @@ N-Katmanlı mimari ile sürdürülebilir kod yapısı
 ✅ Müzik Analizi ve Eşleştirme
 
 
-🧠 Gemini AI Entegrasyonu
+###🧠 Gemini AI Entegrasyonu
 
 Nasıl Çalışır?
 JwtKeyMusic, Google'ın Gemini 1.5 Flash modelini kullanarak kullanıcı taleplerini doğal dil işleme ile analiz eder.
@@ -54,7 +52,7 @@ Tempo, mod, enerji seviyesi gibi kriterleri değerlendirir
 Kişiselleştirilmiş bir çalma listesi oluşturur
 
 
-KategoriTeknolojiKullanım Amacı
+###KategoriTeknolojiKullanım Amacı
 
 🧱 Framework.NET 6.0 Yüksek performanslı Web API geliştirme
 🧠 AI/MLGoogle Gemini AIAkıllı müzik önerileri ve ruh hali analizi
@@ -63,13 +61,13 @@ KategoriTeknolojiKullanım Amacı
 🪪 AuthJWTToken bazlı kimlik doğrulama
 📊 DatabaseSQL Serverİlişkisel veritabanı yönetimi
 
-Frontend (Opsiyonel)
+###Frontend (Opsiyonel)
 ASP.NET Core MVC
 Bootstrap 5
 jQuery
 Font Awesome
 
-Mimari Desenler
+###Mimari Desenler
 
 ✅ N-Layer Architecture
 ✅ Repository Pattern
