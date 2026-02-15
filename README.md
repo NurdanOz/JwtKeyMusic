@@ -1,6 +1,6 @@
 # 🎵 JwtKeyMusic - AI Destekli Müzik Keşif Platformu
 
-[![.NET Core](https://img.shields.io/badge/.NET-8.0-purple?style=for-the-badge&logo=.net)](https://dotnet.microsoft.com/)
+[![.NET Core](https://img.shields.io/badge/.NET-6.0-purple?style=for-the-badge&logo=.net)](https://dotnet.microsoft.com/)
 [![Gemini AI](https://img.shields.io/badge/Gemini-AI-4285F4?style=for-the-badge&logo=google)](https://ai.google.dev/)
 [![JWT](https://img.shields.io/badge/JWT-Auth-000000?style=for-the-badge&logo=jsonwebtokens)](https://jwt.io/)
 [![SQL Server](https://img.shields.io/badge/SQL_Server-Database-CC2927?style=for-the-badge&logo=microsoftsqlserver)](https://www.microsoft.com/sql-server)
@@ -49,7 +49,7 @@ Gemini AI ile güçlendirilmiş akıllı asistan, kullanıcının ruh halini ana
 
 ### Gereksinimler
 
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 - [SQL Server](https://www.microsoft.com/sql-server) (veya SQL Server Express)
 - [Visual Studio 2022](https://visualstudio.microsoft.com/) veya JetBrains Rider
 
@@ -107,8 +107,6 @@ API Swagger dokümantasyonu: `https://localhost:5001/swagger`
 
 ```
 JwtKeyMusic/
-├── 📦 JwtKeyMusic (Ana Proje)
-│
 ├── 💼 JwtKeyMusic.Business          # İş Mantığı Katmanı
 │   ├── Abstract/                    # Interface'ler
 │   ├── Concrete/                    # Servis Implementasyonları
@@ -132,7 +130,7 @@ JwtKeyMusic/
 │   ├── Playlist.cs
 │   └── ...
 │
-├── 🖥️ JwtKeyMusic.UI                # MVC Frontend (Opsiyonel)
+├── 🖥️ JwtKeyMusic.UI                # MVC Frontend
 │
 └── 🌐 JwtKeyMusic.WebApi            # Web API Katmanı
     ├── Controllers/
@@ -217,7 +215,7 @@ public class GeminiAIService
 
 | Kategori | Teknoloji | Kullanım Amacı |
 |----------|-----------|----------------|
-| 🧱 Framework | **.NET 8.0** | Yüksek performanslı Web API geliştirme |
+| 🧱 Framework | **.NET 6.0** | Yüksek performanslı Web API geliştirme |
 | 🧠 AI/ML | **Google Gemini AI** | Akıllı müzik önerileri ve ruh hali analizi |
 | 🗃️ ORM | **Entity Framework Core** | Veritabanı işlemleri ve migration yönetimi |
 | 🔐 Güvenlik | **BCrypt.Net-Next** | Parola hashleme ve güvenli kimlik doğrulama |
