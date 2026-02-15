@@ -256,13 +256,6 @@ Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosy
 
 ---
 
-## 🙏 Teşekkürler
-
-- Google Gemini AI ekibine yapay zeka desteği için
-- .NET topluluğuna sürekli geliştirme ve destek için
-- Tüm açık kaynak katkıda bulunanlara
-
----
 
 ## 📚 Kaynaklar
 
