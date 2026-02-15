@@ -21,37 +21,6 @@ BCrypt ile güvenli şifreleme
 N-Katmanlı mimari ile sürdürülebilir kod yapısı
 
 
-🏗️ Proje Yapısı
-
-├── 💼 JwtKeyMusic.Business          # İş Mantığı Katmanı
-│   ├── Abstract/                    # Interface'ler
-│   ├── Concrete/                    # Servis Implementasyonları
-│   └── Services/
-│       └── GeminiAIService.cs       # Gemini AI Entegrasyonu
-│
-├── 🗃️ JwtKeyMusic.DataAccess        # Veri Erişim Katmanı
-│   ├── Abstract/                    # Repository Interface'leri
-│   ├── Concrete/                    # Repository Implementasyonları
-│   ├── Context/                     # DbContext
-│   └── Migrations/                  # EF Core Migration'ları
-│
-├── 📋 JwtKeyMusic.DTO                # Data Transfer Objects
-│   ├── MusicDtos/
-│   ├── UserDtos/
-│   └── PlaylistDtos/
-│
-├── 🏛️ JwtKeyMusic.Entities          # Domain Entity'leri
-│   ├── Music.cs
-│   ├── User.cs
-│   ├── Playlist.cs
-│   └── ...
-│
-├── 🖥️ JwtKeyMusic.UI                # MVC Frontend (Opsiyonel)
-│
-└── 🌐 JwtKeyMusic.WebApi            # Web API Katmanı
-    ├── Controllers/
-    ├── Middlewares/
-    └── Program.cs
 
 🎯 Temel Özellikler
 
