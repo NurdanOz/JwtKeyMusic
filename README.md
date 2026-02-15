@@ -19,7 +19,6 @@ Proje; **Clean Architecture**, **SOLID** prensipleri ve **RESTful API** standart
 * [🎯 Temel Özellikler](#-temel-özellikler)
 * [🧠 Gemini AI Entegrasyonu](#-gemini-ai-entegrasyonu)
 * [🛠️ Teknoloji Yığını](#️-teknoloji-yığını)
-* [🔒 Güvenlik ve Yetkilendirme](#-güvenlik-ve-yetkilendirme)
 * [📸 Ekran Görüntüleri](#-ekran-görüntüleri)
 
 ---
@@ -36,12 +35,6 @@ Gemini AI ile güçlendirilmiş akıllı asistan, kullanıcının ruh halini ana
 - Role-based access control (RBAC)
 - BCrypt ile güvenli şifreleme
 - N-Katmanlı mimari ile sürdürülebilir kod yapısı
-
-### 🎵 Kapsamlı Müzik Yönetimi
-- Şarkı ekleme, düzenleme ve silme
-- Çalma listeleri oluşturma
-- Favori şarkılar
-- Trend şarkılar ve keşfet sayfası
 
 ---
 
@@ -148,18 +141,6 @@ JwtKeyMusic/
 - ✅ Şifre Sıfırlama
 - ✅ JWT Token ile Oturum Yönetimi
 
-### 🎵 Müzik Özellikleri
-- ✅ Şarkı Arama ve Filtreleme
-- ✅ Kategori Bazlı Listeleme
-- ✅ Trend Şarkılar
-- ✅ Son Eklenenler
-- ✅ Favori Şarkılar
-
-### 📝 Çalma Listeleri
-- ✅ Özel Çalma Listeleri Oluşturma
-- ✅ Şarkı Ekleme/Çıkarma
-- ✅ Liste Paylaşımı
-- ✅ Sıralama ve Düzenleme
 
 ### 🎭 Gemini AI Özellikleri
 - ✅ Ruh Haline Göre Müzik Önerisi
@@ -239,19 +220,6 @@ public class GeminiAIService
 
 ---
 
-## 🔒 Güvenlik ve Yetkilendirme
-
-### Yetkilendirme Matrisi
-
-| İşlem | Ziyaretçi | Kullanıcı | Admin |
-|-------|-----------|-----------|-------|
-| API Erişimi | ❌ 401 | ✅ | ✅ |
-| Şarkı Dinleme | ❌ | ✅ | ✅ |
-| Playlist Oluşturma | ❌ | ✅ | ✅ |
-| Şarkı Ekleme | ❌ | ❌ | ✅ |
-| Kullanıcı Yönetimi | ❌ | ❌ | ✅ |
-| Sistem Ayarları | ❌ | ❌ | ✅ |
-
 ### Güvenlik Özellikleri
 
 - 🔒 **JWT Token Authentication:** Her API isteği token ile doğrulanır
@@ -264,45 +232,27 @@ public class GeminiAIService
 
 ## 📸 Ekran Görüntüleri
 
-### 🏠 Ana Sayfa
-*Trend şarkılar ve keşfet bölümü*
+<img width="1172" height="2271" alt="BEPOP14" src="https://github.com/user-attachments/assets/ee02f9b6-fffe-4564-b647-854f5ff4256f" />
+<img width="1920" height="1014" alt="BEPOP1" src="https://github.com/user-attachments/assets/7c8dd2b3-479d-4403-8a02-3c3f1f70acda" />
+<img width="1920" height="1004" alt="BEPOP2" src="https://github.com/user-attachments/assets/be38fa05-0cc8-4bf7-9b2c-10a71371f3b1" />
+<img width="1920" height="1011" alt="BEPOP3" src="https://github.com/user-attachments/assets/845a4922-a682-4653-9a24-f15711a8858f" />
+<img width="1920" height="1014" alt="BEPOP4" src="https://github.com/user-attachments/assets/a840def8-bc83-4e4d-96fa-6196e2c8476c" />
+<img width="1920" height="1014" alt="BEPOP5" src="https://github.com/user-attachments/assets/1409d0b4-7733-41d8-ae9a-91dbb6930e74" />
+<img width="1920" height="1021" alt="BEPOP6" src="https://github.com/user-attachments/assets/6968cffd-605d-4d43-9bf9-5464820f9d40" />
+<img width="1920" height="1017" alt="BEPOP7" src="https://github.com/user-attachments/assets/6c8d2552-5923-4064-81fd-e21151660b33" />
+<img width="1920" height="1007" alt="BEPOP8" src="https://github.com/user-attachments/assets/fbf7893a-8b0e-488b-9df0-710f42ac0578" />
+<img width="1920" height="1021" alt="BEPOP9" src="https://github.com/user-attachments/assets/f71dbf9e-465e-4c16-a185-67f446624737" />
+<img width="1920" height="1018" alt="BEPOP10" src="https://github.com/user-attachments/assets/7825c1a7-bfbf-49d7-ba8b-5e5fd9e175e0" />
+<img width="1920" height="1014" alt="BEPOP11" src="https://github.com/user-attachments/assets/07c05530-d987-4ff6-9282-6f95fbd4cfb2" />
+<img width="1920" height="1014" alt="BEPOP12" src="https://github.com/user-attachments/assets/e0c7efea-f206-4160-a1fa-b282ec354782" />
+<img width="1920" height="1028" alt="BEPOP13" src="https://github.com/user-attachments/assets/fe7ce8e2-2402-4d33-a496-78d271cf28be" />
 
-### 🎭 Gemini AI Asistan
-*Ruh haline göre müzik önerisi alan kullanıcı arayüzü*
-
-### 📝 Çalma Listeleri
-*Kullanıcının oluşturduğu özel çalma listeleri*
-
-### ⚙️ Admin Paneli
-*Şarkı yönetimi ve kullanıcı istatistikleri*
-
----
-
-## 🤝 Katkıda Bulunma
-
-Bu projeye katkıda bulunmak isterseniz:
-
-1. Projeyi fork edin
-2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add some AmazingFeature'`)
-4. Branch'inizi push edin (`git push origin feature/AmazingFeature`)
-5. Pull Request oluşturun
 
 ---
 
 ## 📝 Lisans
 
 Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakabilirsiniz.
-
----
-
-## 👨‍💻 Geliştirici
-
-**[Adınız Soyadınız]**
-
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
 
 ---
 
