@@ -28,7 +28,7 @@ Proje; **Clean Architecture**, **SOLID** prensipleri ve **RESTful API** standart
 ### 🎭 Ruh Haline Göre Müzik Keşfi
 Gemini AI ile güçlendirilmiş akıllı asistan, kullanıcının ruh halini analiz ederek kişiselleştirilmiş müzik önerileri sunar.
 
-> *"Bugün kendimi enerjik ama biraz melankolik hissediyorum"* → Sistem, veritabanındaki şarkıları analiz ederek mükemmel bir çalma listesi oluşturur.
+> *"Bugün kendimi enerjik ama biraz da melankolik hissediyorum"* → Sistem, veritabanındaki şarkıları analiz ederek mükemmel bir çalma listesi oluşturur.
 
 ### 🔐 Güvenli ve Ölçeklenebilir Mimari
 - JWT tabanlı token kimlik doğrulama
@@ -159,7 +159,7 @@ JwtKeyMusic, Google'ın **Gemini 1.5 Flash** modelini kullanarak kullanıcı tal
 ### Örnek Kullanım:
 
 ```
-Kullanıcı: "Enerjik ama melankolik şarkılar istiyorum"
+Kullanıcı: "Enerjik şarkılar istiyorum"
 ```
 
 ### AI Süreci:
